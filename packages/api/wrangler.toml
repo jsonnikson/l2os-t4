@@ -3,7 +3,7 @@ compatibility_date = "2023-10-30"
 send_metrics = false
 node_compat = true
 main = "src/worker.ts"
-account_id = "719e3374c9fabba87860b809acb3c939"
+account_id = "1d69907bc820ca0f32fe6871989cf51b"
 
 [[d1_databases]]
 binding = "DB"
