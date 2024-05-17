@@ -14,14 +14,14 @@ interface ApiContextProps {
 }
 
 export const createContext = async (
+  req: Request,
   d1: D1Database,
   JWT_VERIFICATION_KEY: string,
-  opts: FetchCreateContextFnOptions
 ): Promise<ApiContextProps> => {
   const db = createDb(d1)
 
   async function getUser() {
-    const sessionToken = opts.req.headers.get('authorization')?.split(' ')[1]
+    const sessionToken = req.headers.get('authorization')?.split(' ')[1]
 
     if (sessionToken !== undefined && sessionToken !== 'undefined') {
       if (!JWT_VERIFICATION_KEY) {
