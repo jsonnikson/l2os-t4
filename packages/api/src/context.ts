@@ -16,7 +16,7 @@ interface ApiContextProps {
 export const createContext = async (
   req: Request,
   d1: D1Database,
-  JWT_VERIFICATION_KEY: string,
+  JWT_VERIFICATION_KEY: string
 ): Promise<ApiContextProps> => {
   const db = createDb(d1)
 

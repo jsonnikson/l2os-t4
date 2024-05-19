@@ -43,16 +43,21 @@ export const insertLexemeSchema = createInsertSchema(LexemeTable)
 export const selectLexemeSchema = createSelectSchema(LexemeTable)
 
 // Translations
-export const TranslationTable = sqliteTable('Translation', {
-  id: text('id').primaryKey(),
-  lexemeId: text('lexemeId').notNull().references(() => LexemeTable.id), 
-  text: text('text').notNull(),
-}, t => ({
-  unq: unique().on(t.lexemeId, t.text)
-}))
+export const TranslationTable = sqliteTable(
+  'Translation',
+  {
+    id: text('id').primaryKey(),
+    lexemeId: text('lexemeId')
+      .notNull()
+      .references(() => LexemeTable.id),
+    text: text('text').notNull(),
+  },
+  (t) => ({
+    unq: unique().on(t.lexemeId, t.text),
+  })
+)
 
 export type Translation = InferSelectModel<typeof TranslationTable>
 export type InsertTranslation = InferInsertModel<typeof TranslationTable>
 export const insertTranslationSchema = createInsertSchema(TranslationTable)
 export const selectTranslationSchema = createSelectSchema(TranslationTable)
-

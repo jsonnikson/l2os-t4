@@ -1,5 +1,5 @@
-import { DevScreen } from "app/features/dev/screen";
+import { DevScreen } from 'app/features/dev/screen'
 
 export default function () {
-    return <DevScreen/>
+  return <DevScreen />
 }

@@ -9,6 +9,7 @@ account_id = "1d69907bc820ca0f32fe6871989cf51b"
 binding = "DB"
 database_name = "production"
 database_id = "5c63d30e-86bc-4636-ab8a-5060e62021b5"
+preview_database_id = "51b785e4-a5c3-4f82-9d53-6f29372c8a6b"
 migrations_dir = "migrations"
 
 # The necessary secrets are:

@@ -5,9 +5,8 @@ import { Context, Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { createYoga, createSchema, YogaInitialContext } from 'graphql-yoga'
 import { createDb } from './db/client'
-import { Lexeme, LexemeTable, Translation, TranslationTable } from './db/schema'
-import { buildSchema, buildResolvers } from '@t4/api/src/graphql/schema'
-import '@t4/api/src/graphql/schema'
+import { CarTable, Lexeme, LexemeTable, Translation, TranslationTable } from './db/schema'
+import { buildSchema } from '@t4/api/src/graphql/schema'
 
 type Bindings = {
   DB: D1Database
@@ -46,6 +45,11 @@ app.use('/trpc/*', async (c, next) => {
 
 const schema = buildSchema<YogaInitialContext & ApiContext>({
   Query: {
+    cars: async (parent, args, context, info) => {
+      const { db } = context
+      const allCars = await db.select().from(CarTable).all()
+      return allCars
+    },
     lexemes: async (parent, args, context, info) => {
       const { db } = context
       const result = await db.batch([
@@ -58,12 +62,14 @@ const schema = buildSchema<YogaInitialContext & ApiContext>({
         else acc.set(row.lexemeId, [row])
         return acc
       }, new Map<Lexeme['id'], Array<Translation>>())
-      return lexemeResult.map((lexeme) => ({
-        ...lexeme,
-        translations: translationMap.get(lexeme.id) || [],
-      }))
+      return lexemeResult
+        .filter((lexeme) => !args.filter || lexeme.text.includes(args.filter))
+        .map((lexeme) => ({
+          ...lexeme,
+          translations: translationMap.get(lexeme.id) || [],
+        }))
     },
-  }
+  },
 })
 
 app.on(['POST', 'GET', 'OPTIONS'], '/graphql/*', async (c) =>
