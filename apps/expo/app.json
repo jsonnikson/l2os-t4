@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "t4-app",
-    "slug": "t4-app",
+    "slug": "l2os",
     "scheme": "t4",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -28,10 +28,10 @@
     },
     "extra": {
       "eas": {
-        "projectId": "85fc6ccd-0ce1-4e4d-804c-b15df989f97e"
+        "projectId": "1a5b3cfb-8307-41b3-89e7-f98da96bbf11"
       }
     },
-    "owner": "timothymiller",
+    "owner": "jsonnikson",
     "plugins": ["expo-router"],
     "experiments": {
       "tsconfigPaths": true,

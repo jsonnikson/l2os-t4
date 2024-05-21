@@ -15,9 +15,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   platforms: ['ios', 'android'],
   name: 'T4 App',
-  slug: 't4-app',
+  slug: 'l2os',
   updates: {
-    url: 'https://u.expo.dev/85fc6ccd-0ce1-4e4d-804c-b15df989f97e',
+    url: 'https://u.expo.dev/1a5b3cfb-8307-41b3-89e7-f98da96bbf11',
   },
   runtimeVersion: {
     policy: 'sdkVersion',
