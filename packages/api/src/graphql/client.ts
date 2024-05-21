@@ -9,7 +9,7 @@ type ClientTypes = InferClient<{ query: typeof queryType }>
 export const { useQuery } = createClient<ClientTypes>({
   generatedSchema: createGeneratedSchema(schema),
   scalarsEnumsHash: createScalarsEnumsHash(schema),
-  url: 'http://localhost:8787/graphql',
+  url: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
 })
 
 // Needed for the babel plugin
