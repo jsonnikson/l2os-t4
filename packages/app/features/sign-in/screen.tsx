@@ -14,6 +14,7 @@ export const SignInScreen = (): React.ReactNode => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
+        redirectTo: process.env.NEXT_PUBLIC_APP_URL,
         scopes:
           provider === 'google'
             ? 'https://www.googleapis.com/auth/userinfo.email, https://www.googleapis.com/auth/userinfo.profile'
